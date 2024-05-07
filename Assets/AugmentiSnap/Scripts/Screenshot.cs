@@ -14,15 +14,21 @@ public class Screenshot : MonoBehaviour
     public UnityEvent BeforeFrameCapture;
     public UnityEvent AfterFrameCapture;
 
-  
 
-    
+
+    public Animator animator;
 
     public void TakeScreenShot() 
     {
-       
+        animator.SetTrigger("Play");
+        Invoke(nameof(StartTakingScreenShot), 5);
+    }
+
+    public void StartTakingScreenShot()
+    {
+
         StartCoroutine(ScreenshotEncode());
-     }
+    }
 
     IEnumerator ScreenshotEncode()
     {
